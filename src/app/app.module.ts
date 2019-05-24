@@ -6,20 +6,23 @@ import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app.routing';
 
 import {AppComponent} from './app.component';
-import {SignupComponent} from './signup/signup.component';
+import {SignInComponent} from './sign-in/sign-in.component';
 import {LandingComponent} from './landing/landing.component';
 import {ProfileComponent} from './profile/profile.component';
 import {NavbarComponent} from './shared/navbar/navbar.component';
 import {FooterComponent} from './shared/footer/footer.component';
 
 import {HomeModule} from './home/home.module';
-import {AuthService, AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {getAuthServiceConfigs} from './core/social-login-config';
+import {DashboardModule} from './dashboard/dashboard.module';
+import {CookieService} from 'ngx-cookie-service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [
         AppComponent,
-        SignupComponent,
+        SignInComponent,
         LandingComponent,
         ProfileComponent,
         NavbarComponent,
@@ -32,13 +35,16 @@ import {getAuthServiceConfigs} from './core/social-login-config';
         RouterModule,
         AppRoutingModule,
         HomeModule,
-        SocialLoginModule
+        DashboardModule,
+        SocialLoginModule,
+        HttpClientModule
     ],
     providers: [
         {
             provide: AuthServiceConfig,
             useFactory: getAuthServiceConfigs
-        }
+        },
+        CookieService
     ],
     bootstrap: [AppComponent]
 })
