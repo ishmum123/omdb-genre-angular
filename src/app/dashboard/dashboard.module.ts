@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 
-import {DashboardComponent} from './dashboard.component';
+import {DashboardComponent, MovieModalContentComponent} from './dashboard.component';
 
 import {ComponentsModule} from '../components/components.module';
 
@@ -17,9 +17,10 @@ import {ComponentsModule} from '../components/components.module';
         RouterModule,
         ComponentsModule
     ],
-    declarations: [DashboardComponent],
+    declarations: [DashboardComponent, MovieModalContentComponent],
     exports: [DashboardComponent],
-    providers: []
+    providers: [],
+    entryComponents: [MovieModalContentComponent]
 })
 export class DashboardModule {
 }

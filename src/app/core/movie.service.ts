@@ -13,6 +13,10 @@ export class MovieService {
     }
 
     getMovies(search?: string): Observable<Movie[]> {
-        return this._client.get<Movie[]>(MOVIE, {params: {search: search}});
+        const params: any = {};
+        if (search) {
+            params.search = search;
+        }
+        return this._client.get<Movie[]>(MOVIE, {params: params});
     }
 }
