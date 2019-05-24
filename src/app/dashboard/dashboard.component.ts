@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MovieService} from '../core/movie.service';
+import {Movie} from '../core/models';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
     selector: 'app-dashboard',
@@ -6,15 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DashboardComponent implements OnInit {
-    model = {
-        left: true,
-        middle: false,
-        right: false
-    };
 
-    focus;
-    focus1;
-    constructor() { }
+    movies: Movie[];
 
-    ngOnInit() {}
+    constructor(private _movieService: MovieService) {
+    }
+
+    ngOnInit() {
+        this.getMovies();
+    }
+
+    private getMovies(search?: string) {
+        if (!(search && search.includes(','))) {
+            this._movieService.getMovies(search)
+                .subscribe(movies => this.movies = movies);
+        } else {
+            console.log('Must not contain \',\'');
+        }
+    }
 }
